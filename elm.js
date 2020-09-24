@@ -6186,6 +6186,9 @@ var $author$project$Page$About$view = A2(
 		[
 			$elm$html$Html$text('ABOUT')
 		]));
+var $author$project$Page$Home$About$aboutContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+var $elm$html$Html$h1 = _VirtualDom_node('h1');
+var $elm$html$Html$p = _VirtualDom_node('p');
 var $author$project$Page$Home$About$view = A2(
 	$elm$html$Html$div,
 	_List_fromArray(
@@ -6194,9 +6197,60 @@ var $author$project$Page$Home$About$view = A2(
 		]),
 	_List_fromArray(
 		[
-			$elm$html$Html$text('ABOUT')
+			A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('about-content-container')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$img,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('about-headshot'),
+							$elm$html$Html$Attributes$src('./src/assets/images/headshot.png')
+						]),
+					_List_Nil),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('about-heading-container')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$h1,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('about-heading-text')
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Shrey Somaiya')
+								])),
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('about-heading-right-border')
+								]),
+							_List_Nil)
+						])),
+					A2(
+					$elm$html$Html$p,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('about-content-text')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text($author$project$Page$Home$About$aboutContent)
+						]))
+				]))
 		]));
-var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $author$project$Page$Home$Landing$view = A2(
 	$elm$html$Html$div,
