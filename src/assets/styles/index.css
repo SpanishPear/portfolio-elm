@@ -1,0 +1,77 @@
+body {
+    margin:0;
+    background-color: #CAF2FF;
+}
+
+.logo {
+    width: 3vw;
+    height: 7vh;
+    min-height: 30px;
+    min-width: 30px;
+    padding-left: 20px !important;
+}
+
+#header {
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 10%;
+}
+
+.nav-container {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 9vh;
+    margin: 0 5vw;
+    padding-bottom: 1vh;
+}
+
+.nav-right-item {
+    text-decoration: none;
+    font-weight: 500;
+    padding-left: 40px;
+    color:black;
+    font-size: 15pt;
+    font-family: Roboto, sans-serif;
+}
+
+/* -------------- Landing Page ------------- */
+
+.landing-container {
+    height: 88vh;
+    margin:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-text-title {
+    line-height: 12vh;
+    font-family: Roboto, sans-serif;
+    letter-spacing: 0.1em;;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #4F4F4F;
+    width: 10vw;
+    font-size: 10vh; /* pretty sure I should use em/rem*/
+    margin-bottom: 0;
+}
+
+
+.landing-text-subtitle {
+    font-family: Josefin Sans, sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #378199;
+    font-size: 3.5vh; /* pretty sure I should use em/rem*/
+    margin-top: 0;
+    margin-left: 0.5vh
+}
+
+
+/* -------------- About Page ------------- */
+
+.about-container {
+    height: 80vh;
+    /* border: 1px solid green; */
+}
