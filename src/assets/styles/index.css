@@ -31,14 +31,14 @@ body {
     font-weight: 500;
     padding-left: 40px;
     color:black;
-    font-size: 15pt;
+    font-size: 1.5rem;
     font-family: Roboto, sans-serif;
 }
 
 /* -------------- Landing Page ------------- */
 
 .landing-container {
-    height: 88vh;
+    height: 90vh;
     margin:0;
     display: flex;
     align-items: center;
@@ -72,6 +72,43 @@ body {
 /* -------------- About Page ------------- */
 
 .about-container {
-    height: 80vh;
-    /* border: 1px solid green; */
+    height: 90vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-content-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.about-content-text-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3vw;
+}
+.about-heading-container {
+    display: flex;
+    align-items: flex-end;
+}
+.about-heading-right-border {
+    width: 30vw;
+    border-bottom: 5px solid #378199;
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+}
+
+.about-heading-text {
+    margin:0;
+}
+
+.about-content-text {
+    font-size: 2vh;
+    width: 20vw;
+    line-height: 3vh;
+}
+
+.about-headshot {
+    height: 60vh;
 }
