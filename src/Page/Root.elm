@@ -1,6 +1,6 @@
-module Page.Root exposing (..)
+module Page.Root exposing (view)
 
-import Html exposing (..)
+import Html exposing (Html, h2)
 
 
 view : Html msg

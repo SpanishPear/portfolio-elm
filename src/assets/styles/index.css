@@ -9,12 +9,18 @@ body {
     min-height: 30px;
     min-width: 30px;
     padding-left: 20px !important;
+    cursor: pointer;
 }
 
 #header {
     display: flex;
     justify-content: flex-end;
     padding-left: 10%;
+}
+
+.sticky {
+    position: fixed;
+    right: 0%;
 }
 
 .nav-container {
@@ -37,7 +43,7 @@ body {
 
 /* -------------- Landing Page ------------- */
 
-.landing-container {
+#landing-container {
     height: 90vh;
     margin:0;
     display: flex;
@@ -45,7 +51,7 @@ body {
     justify-content: center;
 }
 
-.landing-text-title {
+#landing-text-title {
     line-height: 12vh;
     font-family: Roboto, sans-serif;
     letter-spacing: 0.1em;;

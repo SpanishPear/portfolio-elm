@@ -1,12 +1,9 @@
-module Page.Util exposing (..)
+module Page.Util exposing (determinePage)
 
 import Components.NavBar exposing (navbar)
-import Element.Border as Border
-import Html exposing (Attribute, Html, a, div, img, text)
-import Html.Attributes exposing (class, href, src)
+import Html exposing (Html, div)
 import Page.About
 import Page.Home.Home
-import Page.Home.Landing
 import Page.NotFound
 import Page.Post
 import Page.Resume
@@ -25,7 +22,7 @@ determinePage route =
             Page.Root.view
 
         Just About ->
-            Page.About.view
+            div [] [ navbar, Page.About.view ]
 
         Just Resume ->
             Page.Resume.view

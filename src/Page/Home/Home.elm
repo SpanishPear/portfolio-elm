@@ -1,7 +1,6 @@
-module Page.Home.Home exposing (..)
+module Page.Home.Home exposing (view)
 
 import Html exposing (Html, div)
-import Html.Attributes exposing (class)
 import Page.Home.About as About
 import Page.Home.Landing as Landing
 

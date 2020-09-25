@@ -29,11 +29,8 @@ type alias Model =
 
 
 init : Flags -> Url -> Key -> ( Model, Cmd Msg )
-init flags url key =
+init _ url key =
     let
-        _ =
-            Debug.log "url" url
-
         parsedUrl =
             Parser.parse routeParser url
 
@@ -100,15 +97,16 @@ view model =
 
 
 onUrlRequest : UrlRequest -> Msg
-onUrlRequest urlRequest =
+onUrlRequest _ =
     NoOp
 
 
 onUrlChange : Url -> Msg
-onUrlChange url =
+onUrlChange _ =
     NoOp
 
 
+main : Program Flags Model Msg
 main =
     Browser.application
         { init = init

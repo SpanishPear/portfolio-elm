@@ -1,8 +1,9 @@
-module Page.About exposing (..)
+module Page.About exposing (view)
 
-import Html exposing (..)
+import Html exposing (Html)
+import Page.Home.About
 
 
 view : Html msg
 view =
-    h2 [] [ Html.text "ABOUT" ]
+    Page.Home.About.view

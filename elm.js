@@ -5167,7 +5167,6 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$application = _Browser_application;
-var $elm$core$Debug$log = _Debug_log;
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $elm$url$Url$Parser$State = F5(
@@ -5985,10 +5984,9 @@ var $author$project$Route$routeParser = $elm$url$Url$Parser$oneOf(
 				$author$project$Post$Title$urlParser))
 		]));
 var $author$project$Main$init = F3(
-	function (flags, url, key) {
+	function (_v0, url, key) {
 		var parsedUrl = A2($elm$url$Url$Parser$parse, $author$project$Route$routeParser, url);
 		var model = {navigationKey: key, route: parsedUrl};
-		var _v0 = A2($elm$core$Debug$log, 'url', url);
 		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 	});
 var $elm$core$Platform$Sub$batch = _Platform_batch;
@@ -6097,6 +6095,7 @@ var $elm$html$Html$Attributes$src = function (url) {
 		'src',
 		_VirtualDom_noJavaScriptOrHtmlUri(url));
 };
+var $elm$html$Html$Attributes$target = $elm$html$Html$Attributes$stringProperty('target');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $author$project$Components$NavBar$navbar = A2(
@@ -6128,7 +6127,8 @@ var $author$project$Components$NavBar$navbar = A2(
 							_List_fromArray(
 								[
 									$elm$html$Html$Attributes$class('nav-right-item'),
-									$elm$html$Html$Attributes$href('/about')
+									$elm$html$Html$Attributes$href('#about'),
+									$elm$html$Html$Attributes$target('_self')
 								]),
 							_List_fromArray(
 								[
@@ -6169,22 +6169,20 @@ var $author$project$Components$NavBar$navbar = A2(
 								]))
 						])),
 					A2(
-					$elm$html$Html$img,
+					$elm$html$Html$a,
+					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$class('nav-right-item logo'),
-							$elm$html$Html$Attributes$src('./src/assets/images/logo.png')
-						]),
-					_List_Nil)
+							A2(
+							$elm$html$Html$img,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('nav-right-item logo'),
+									$elm$html$Html$Attributes$src('./src/assets/images/logo.png')
+								]),
+							_List_Nil)
+						]))
 				]))
-		]));
-var $elm$html$Html$h2 = _VirtualDom_node('h2');
-var $author$project$Page$About$view = A2(
-	$elm$html$Html$h2,
-	_List_Nil,
-	_List_fromArray(
-		[
-			$elm$html$Html$text('ABOUT')
 		]));
 var $author$project$Page$Home$About$aboutContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
@@ -6193,6 +6191,7 @@ var $author$project$Page$Home$About$view = A2(
 	$elm$html$Html$div,
 	_List_fromArray(
 		[
+			$elm$html$Html$Attributes$id('about'),
 			$elm$html$Html$Attributes$class('about-container')
 		]),
 	_List_fromArray(
@@ -6260,12 +6259,13 @@ var $author$project$Page$Home$About$view = A2(
 						]))
 				]))
 		]));
+var $author$project$Page$About$view = $author$project$Page$Home$About$view;
 var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $author$project$Page$Home$Landing$view = A2(
 	$elm$html$Html$div,
 	_List_fromArray(
 		[
-			$elm$html$Html$Attributes$class('landing-container')
+			$elm$html$Html$Attributes$id('landing-container')
 		]),
 	_List_fromArray(
 		[
@@ -6281,7 +6281,7 @@ var $author$project$Page$Home$Landing$view = A2(
 					$elm$html$Html$h1,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$class('landing-text-title')
+							$elm$html$Html$Attributes$id('landing-text-title')
 						]),
 					_List_fromArray(
 						[
@@ -6304,6 +6304,7 @@ var $author$project$Page$Home$Home$view = A2(
 	_List_Nil,
 	_List_fromArray(
 		[$author$project$Page$Home$Landing$view, $author$project$Page$Home$About$view]));
+var $elm$html$Html$h2 = _VirtualDom_node('h2');
 var $author$project$Page$NotFound$view = A2(
 	$elm$html$Html$h2,
 	_List_Nil,
@@ -6354,7 +6355,11 @@ var $author$project$Page$Util$determinePage = function (route) {
 				return $author$project$Page$Root$view;
 			case 'About':
 				var _v3 = route.a;
-				return $author$project$Page$About$view;
+				return A2(
+					$elm$html$Html$div,
+					_List_Nil,
+					_List_fromArray(
+						[$author$project$Components$NavBar$navbar, $author$project$Page$About$view]));
 			case 'Resume':
 				var _v4 = route.a;
 				return $author$project$Page$Resume$view;
@@ -6414,8 +6419,8 @@ var $author$project$Main$view = function (model) {
 				_Debug_todo(
 					'Main',
 					{
-						start: {line: 96, column: 33},
-						end: {line: 96, column: 43}
+						start: {line: 93, column: 33},
+						end: {line: 93, column: 43}
 					}));
 			return $elm$core$List$singleton(
 				$author$project$Page$Util$determinePage(model.route));

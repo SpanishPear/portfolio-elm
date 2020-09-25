@@ -1,12 +1,12 @@
-module Page.Home.About exposing (..)
+module Page.Home.About exposing (view)
 
 import Html exposing (Html, div, h1, img, p)
-import Html.Attributes exposing (class, src)
+import Html.Attributes exposing (class, id, src)
 
 
 view : Html msg
 view =
-    div [ class "about-container" ]
+    div [ id "about", class "about-container" ]
         [ div [ class "about-content-container" ]
             [ img [ class "about-headshot", src "./src/assets/images/headshot.png" ] []
             , div [ class "about-content-text-container" ]

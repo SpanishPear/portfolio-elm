@@ -1,6 +1,6 @@
-module Page.Post exposing (..)
+module Page.Post exposing (view)
 
-import Html exposing (..)
+import Html exposing (Html, h2)
 import Post.Title as Title exposing (Title)
 
 
