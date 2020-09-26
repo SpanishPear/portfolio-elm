@@ -20,7 +20,9 @@ body {
 
 .sticky {
     position: fixed;
-    right: 0%;
+    float: right;
+    top:0;
+    right: 0;
 }
 
 .nav-container {
@@ -36,7 +38,7 @@ body {
     text-decoration: none;
     font-weight: 500;
     padding-left: 40px;
-    color:black;
+    color:#4F4F4F;
     font-size: 1.5rem;
     font-family: Roboto, sans-serif;
 }
@@ -44,12 +46,16 @@ body {
 /* -------------- Landing Page ------------- */
 
 #landing-container {
-    height: 90vh;
-    margin:0;
+    height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.landing-no-header {
+    margin-top: 10vh;
+}
+
 
 #landing-text-title {
     line-height: 12vh;
@@ -78,7 +84,7 @@ body {
 /* -------------- About Page ------------- */
 
 .about-container {
-    height: 90vh;
+    height: 80vh;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -87,19 +93,21 @@ body {
 .about-content-container {
     display: flex;
     flex-direction: row;
+    width: 70%;
 }
 
 .about-content-text-container {
     display: flex;
     flex-direction: column;
-    margin-left: 3vw;
+    margin-left: 5%;
+    width: 80%
 }
 .about-heading-container {
     display: flex;
     align-items: flex-end;
 }
 .about-heading-right-border {
-    width: 30vw;
+    width: 300%;
     border-bottom: 5px solid #378199;
     margin-bottom: 1vh;
     margin-left: 1vw;
@@ -111,7 +119,7 @@ body {
 
 .about-content-text {
     font-size: 2vh;
-    width: 20vw;
+    width: 60%;
     line-height: 3vh;
 }
 

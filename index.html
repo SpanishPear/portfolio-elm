@@ -16,15 +16,18 @@
   var header = document.getElementById("header");
 
   // Get the offset position of the navbar
-  var sticky = 3/4 * document.getElementById("landing-container").offsetHeight;
+  var sticky = 85/100 * document.getElementById("landing-container").getBoundingClientRect().height;
   console.log(sticky);
 
   // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
   function myFunction() {
-    if (window.pageYOffset > sticky) {
+    if (window.scrollY > sticky) {
       header.classList.add("sticky");
+      document.getElementById("landing-container").classList.add("landing-no-header")
     } else {
       header.classList.remove("sticky");
+      document.getElementById("landing-container").classList.remove("landing-no-header")
+
     }
   } 
   </script>
