@@ -10,6 +10,7 @@ import Page.Resume
 import Page.Root
 import Route exposing (Route(..))
 import Url.Builder exposing (Root)
+import Page.Construction
 
 
 determinePage : Maybe Route -> Html msg
@@ -19,19 +20,17 @@ determinePage route =
             div [] [ navbar, Page.Home.Home.view ]
 
         Just Root ->
-            Page.Root.view
-
+            div [] [ navbar, Page.Construction.view ]
         Just About ->
             div [] [ navbar, Page.About.view ]
 
         Just Resume ->
-            Page.Resume.view
+            div [] [ navbar, Page.Construction.view ]
 
         Just (Post postTitle) ->
             Page.Post.view postTitle
 
         Just NotFound ->
-            Page.NotFound.view
-
+            div [] [ navbar, Page.Construction.view ]
         Nothing ->
-            Page.NotFound.view
+            div [] [ navbar, Page.Construction.view ]

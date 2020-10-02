@@ -1,8 +1,9 @@
 body {
     margin:0;
     background-color: #CAF2FF;
+    height:  100vh;
 }
-
+/* -------------- Nav Bar ------------- */
 .logo {
     width: 3vw;
     height: 7vh;
@@ -125,4 +126,16 @@ body {
 
 .about-headshot {
     height: 60vh;
+}
+
+/* -------------- Cosntruction Page ------------- */
+.construction-image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+}
+.construction-image-container > img{
+    width:300px;
+    height: 300px;
 }

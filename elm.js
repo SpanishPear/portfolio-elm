@@ -6127,7 +6127,7 @@ var $author$project$Components$NavBar$navbar = A2(
 							_List_fromArray(
 								[
 									$elm$html$Html$Attributes$class('nav-right-item'),
-									$elm$html$Html$Attributes$href('#about'),
+									$elm$html$Html$Attributes$href('/#about'),
 									$elm$html$Html$Attributes$target('_self')
 								]),
 							_List_fromArray(
@@ -6260,6 +6260,22 @@ var $author$project$Page$Home$About$view = A2(
 				]))
 		]));
 var $author$project$Page$About$view = $author$project$Page$Home$About$view;
+var $author$project$Page$Construction$view = A2(
+	$elm$html$Html$div,
+	_List_fromArray(
+		[
+			$elm$html$Html$Attributes$class('construction-image-container')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$elm$html$Html$img,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$src('./src/assets/images/under-construction.png')
+				]),
+			_List_Nil)
+		]));
 var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $author$project$Page$Home$Landing$view = A2(
 	$elm$html$Html$div,
@@ -6305,13 +6321,6 @@ var $author$project$Page$Home$Home$view = A2(
 	_List_fromArray(
 		[$author$project$Page$Home$Landing$view, $author$project$Page$Home$About$view]));
 var $elm$html$Html$h2 = _VirtualDom_node('h2');
-var $author$project$Page$NotFound$view = A2(
-	$elm$html$Html$h2,
-	_List_Nil,
-	_List_fromArray(
-		[
-			$elm$html$Html$text('HOME')
-		]));
 var $author$project$Post$Title$toString = function (_v0) {
 	var str = _v0.a;
 	return str;
@@ -6326,20 +6335,6 @@ var $author$project$Page$Post$view = function (title) {
 				$author$project$Post$Title$toString(title))
 			]));
 };
-var $author$project$Page$Resume$view = A2(
-	$elm$html$Html$h2,
-	_List_Nil,
-	_List_fromArray(
-		[
-			$elm$html$Html$text('HOME')
-		]));
-var $author$project$Page$Root$view = A2(
-	$elm$html$Html$h2,
-	_List_Nil,
-	_List_fromArray(
-		[
-			$elm$html$Html$text('HOME')
-		]));
 var $author$project$Page$Util$determinePage = function (route) {
 	if (route.$ === 'Just') {
 		switch (route.a.$) {
@@ -6352,7 +6347,11 @@ var $author$project$Page$Util$determinePage = function (route) {
 						[$author$project$Components$NavBar$navbar, $author$project$Page$Home$Home$view]));
 			case 'Root':
 				var _v2 = route.a;
-				return $author$project$Page$Root$view;
+				return A2(
+					$elm$html$Html$div,
+					_List_Nil,
+					_List_fromArray(
+						[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
 			case 'About':
 				var _v3 = route.a;
 				return A2(
@@ -6362,16 +6361,28 @@ var $author$project$Page$Util$determinePage = function (route) {
 						[$author$project$Components$NavBar$navbar, $author$project$Page$About$view]));
 			case 'Resume':
 				var _v4 = route.a;
-				return $author$project$Page$Resume$view;
+				return A2(
+					$elm$html$Html$div,
+					_List_Nil,
+					_List_fromArray(
+						[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
 			case 'Post':
 				var postTitle = route.a.a;
 				return $author$project$Page$Post$view(postTitle);
 			default:
 				var _v5 = route.a;
-				return $author$project$Page$NotFound$view;
+				return A2(
+					$elm$html$Html$div,
+					_List_Nil,
+					_List_fromArray(
+						[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
 		}
 	} else {
-		return $author$project$Page$NotFound$view;
+		return A2(
+			$elm$html$Html$div,
+			_List_Nil,
+			_List_fromArray(
+				[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
 	}
 };
 var $mdgriffith$elm_ui$Internal$Model$Attr = function (a) {
