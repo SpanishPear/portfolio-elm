@@ -1,36 +1,23 @@
-module Page.Util exposing (determinePage)
-
-import Components.NavBar exposing (navbar)
-import Html exposing (Html, div)
-import Page.About
-import Page.Home.Home
-import Page.NotFound
-import Page.Post
-import Page.Resume
-import Page.Root
-import Route exposing (Route(..))
-import Url.Builder exposing (Root)
-import Page.Construction
+module Page.Util exposing (jumpToBottomOfId, resetViewport)
+import Msg exposing (Msg(..))
+import Task exposing (Task)
+import Browser.Dom as Dom
 
 
-determinePage : Maybe Route -> Html msg
-determinePage route =
-    case route of
-        Just Home ->
-            div [] [ navbar, Page.Home.Home.view ]
 
-        Just Root ->
-            div [] [ navbar, Page.Construction.view ]
-        Just About ->
-            div [] [ navbar, Page.About.view ]
+-- Scroll to bottom of div with given ID
+-- https://package.elm-lang.org/packages/elm/browser/latest/Browser-Dom#setViewportOf
+jumpToBottomOfId : String -> Cmd Msg
+jumpToBottomOfId id =
+    Dom.getViewportOf id
+        |> Task.andThen (\info -> Dom.setViewportOf id 0 info.scene.height)
+        |> Task.attempt (\_ -> NoOp)
 
-        Just Resume ->
-            div [] [ navbar, Page.Construction.view ]
 
-        Just (Post postTitle) ->
-            Page.Post.view postTitle
+-- Scroll to top of viewport 
+-- https://package.elm-lang.org/packages/elm/browser/latest/Browser-Dom#setViewport
+resetViewport : Cmd Msg
+resetViewport =
+    Task.perform (\_ -> NoOp) (Dom.setViewport 0 0)
 
-        Just NotFound ->
-            div [] [ navbar, Page.Construction.view ]
-        Nothing ->
-            div [] [ navbar, Page.Construction.view ]
+    

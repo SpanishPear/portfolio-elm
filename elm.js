@@ -4372,10 +4372,10 @@ function _Url_percentDecode(string)
 	{
 		return $elm$core$Maybe$Nothing;
 	}
-}var $author$project$Main$ChangeUrl = function (a) {
+}var $author$project$Msg$ChangeUrl = function (a) {
 	return {$: 'ChangeUrl', a: a};
 };
-var $author$project$Main$ClickLink = function (a) {
+var $author$project$Msg$ClickLink = function (a) {
 	return {$: 'ClickLink', a: a};
 };
 var $elm$core$Basics$EQ = {$: 'EQ'};
@@ -5991,8 +5991,56 @@ var $author$project$Main$init = F3(
 	});
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $author$project$Msg$NoOp = {$: 'NoOp'};
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $elm$core$Task$onError = _Scheduler_onError;
+var $elm$core$Task$attempt = F2(
+	function (resultToMessage, task) {
+		return $elm$core$Task$command(
+			$elm$core$Task$Perform(
+				A2(
+					$elm$core$Task$onError,
+					A2(
+						$elm$core$Basics$composeL,
+						A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
+						$elm$core$Result$Err),
+					A2(
+						$elm$core$Task$andThen,
+						A2(
+							$elm$core$Basics$composeL,
+							A2($elm$core$Basics$composeL, $elm$core$Task$succeed, resultToMessage),
+							$elm$core$Result$Ok),
+						task))));
+	});
+var $elm$browser$Browser$Dom$getViewportOf = _Browser_getViewportOf;
+var $elm$browser$Browser$Dom$setViewportOf = _Browser_setViewportOf;
+var $author$project$Page$Util$jumpToBottomOfId = function (id) {
+	return A2(
+		$elm$core$Task$attempt,
+		function (_v0) {
+			return $author$project$Msg$NoOp;
+		},
+		A2(
+			$elm$core$Task$andThen,
+			function (info) {
+				return A3($elm$browser$Browser$Dom$setViewportOf, id, 0, info.scene.height);
+			},
+			$elm$browser$Browser$Dom$getViewportOf(id)));
+};
 var $elm$browser$Browser$Navigation$load = _Browser_load;
+var $elm$core$Debug$log = _Debug_log;
 var $elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
+var $elm$browser$Browser$Dom$setViewport = _Browser_setViewport;
+var $author$project$Page$Util$resetViewport = A2(
+	$elm$core$Task$perform,
+	function (_v0) {
+		return $author$project$Msg$NoOp;
+	},
+	A2($elm$browser$Browser$Dom$setViewport, 0, 0));
 var $elm$url$Url$addPort = F2(
 	function (maybePort, starter) {
 		if (maybePort.$ === 'Nothing') {
@@ -6051,7 +6099,7 @@ var $author$project$Main$update = F2(
 							route: A2($elm$url$Url$Parser$parse, $author$project$Route$routeParser, url)
 						}),
 					$elm$core$Platform$Cmd$none);
-			default:
+			case 'ClickLink':
 				var urlRequest = msg.a;
 				if (urlRequest.$ === 'Internal') {
 					var url = urlRequest.a;
@@ -6067,9 +6115,21 @@ var $author$project$Main$update = F2(
 						model,
 						$elm$browser$Browser$Navigation$load(url));
 				}
+			case 'ResetScroll':
+				return _Utils_Tuple2(model, $author$project$Page$Util$resetViewport);
+			default:
+				var id = msg.a;
+				var _v2 = A2($elm$core$Debug$log, 'Id', id);
+				return _Utils_Tuple2(
+					model,
+					$author$project$Page$Util$jumpToBottomOfId(id));
 		}
 	});
 var $elm$html$Html$div = _VirtualDom_node('div');
+var $author$project$Msg$ResetScroll = {$: 'ResetScroll'};
+var $author$project$Msg$ScrollTo = function (a) {
+	return {$: 'ScrollTo', a: a};
+};
 var $elm$html$Html$a = _VirtualDom_node('a');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
@@ -6089,13 +6149,29 @@ var $elm$html$Html$Attributes$href = function (url) {
 };
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$img = _VirtualDom_node('img');
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
 var $elm$html$Html$Attributes$src = function (url) {
 	return A2(
 		$elm$html$Html$Attributes$stringProperty,
 		'src',
 		_VirtualDom_noJavaScriptOrHtmlUri(url));
 };
-var $elm$html$Html$Attributes$target = $elm$html$Html$Attributes$stringProperty('target');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $author$project$Components$NavBar$navbar = A2(
@@ -6127,8 +6203,21 @@ var $author$project$Components$NavBar$navbar = A2(
 							_List_fromArray(
 								[
 									$elm$html$Html$Attributes$class('nav-right-item'),
-									$elm$html$Html$Attributes$href('/#about'),
-									$elm$html$Html$Attributes$target('_self')
+									$elm$html$Html$Attributes$href('/'),
+									$elm$html$Html$Events$onClick($author$project$Msg$ResetScroll)
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Home')
+								])),
+							A2(
+							$elm$html$Html$a,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('nav-right-item'),
+									$elm$html$Html$Attributes$href(''),
+									$elm$html$Html$Events$onClick(
+									$author$project$Msg$ScrollTo('about'))
 								]),
 							_List_fromArray(
 								[
@@ -6184,6 +6273,13 @@ var $author$project$Components$NavBar$navbar = A2(
 						]))
 				]))
 		]));
+var $author$project$Components$TopPin$topPin = A2(
+	$elm$html$Html$div,
+	_List_fromArray(
+		[
+			$elm$html$Html$Attributes$id('top-pin')
+		]),
+	_List_Nil);
 var $author$project$Page$Home$About$aboutContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$p = _VirtualDom_node('p');
@@ -6335,7 +6431,7 @@ var $author$project$Page$Post$view = function (title) {
 				$author$project$Post$Title$toString(title))
 			]));
 };
-var $author$project$Page$Util$determinePage = function (route) {
+var $author$project$Page$Controller$determinePage = function (route) {
 	if (route.$ === 'Just') {
 		switch (route.a.$) {
 			case 'Home':
@@ -6344,7 +6440,7 @@ var $author$project$Page$Util$determinePage = function (route) {
 					$elm$html$Html$div,
 					_List_Nil,
 					_List_fromArray(
-						[$author$project$Components$NavBar$navbar, $author$project$Page$Home$Home$view]));
+						[$author$project$Components$TopPin$topPin, $author$project$Components$NavBar$navbar, $author$project$Page$Home$Home$view]));
 			case 'Root':
 				var _v2 = route.a;
 				return A2(
@@ -6368,7 +6464,14 @@ var $author$project$Page$Util$determinePage = function (route) {
 						[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
 			case 'Post':
 				var postTitle = route.a.a;
-				return $author$project$Page$Post$view(postTitle);
+				return A2(
+					$elm$html$Html$div,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$author$project$Components$NavBar$navbar,
+							$author$project$Page$Post$view(postTitle)
+						]));
 			default:
 				var _v5 = route.a;
 				return A2(
@@ -6385,26 +6488,15 @@ var $author$project$Page$Util$determinePage = function (route) {
 				[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
 	}
 };
-var $mdgriffith$elm_ui$Internal$Model$Attr = function (a) {
-	return {$: 'Attr', a: a};
-};
-var $mdgriffith$elm_ui$Internal$Model$htmlClass = function (cls) {
-	return $mdgriffith$elm_ui$Internal$Model$Attr(
-		$elm$html$Html$Attributes$class(cls));
-};
-var $mdgriffith$elm_ui$Element$explain = function (_v0) {
-	return $mdgriffith$elm_ui$Internal$Model$htmlClass('explain');
-};
 var $elm$core$List$singleton = function (value) {
 	return _List_fromArray(
 		[value]);
 };
-var $elm$core$Debug$todo = _Debug_todo;
 var $author$project$Main$view = function (model) {
 	var title = function () {
-		var _v1 = model.route;
-		if (_v1.$ === 'Just') {
-			var route = _v1.a;
+		var _v0 = model.route;
+		if (_v0.$ === 'Just') {
+			var route = _v0.a;
 			switch (route.$) {
 				case 'Home':
 					return 'SpanishPear';
@@ -6425,25 +6517,16 @@ var $author$project$Main$view = function (model) {
 		}
 	}();
 	return {
-		body: function () {
-			var _v0 = $mdgriffith$elm_ui$Element$explain(
-				_Debug_todo(
-					'Main',
-					{
-						start: {line: 93, column: 33},
-						end: {line: 93, column: 43}
-					}));
-			return $elm$core$List$singleton(
-				$author$project$Page$Util$determinePage(model.route));
-		}(),
+		body: $elm$core$List$singleton(
+			$author$project$Page$Controller$determinePage(model.route)),
 		title: title
 	};
 };
 var $author$project$Main$main = $elm$browser$Browser$application(
 	{
 		init: $author$project$Main$init,
-		onUrlChange: $author$project$Main$ChangeUrl,
-		onUrlRequest: $author$project$Main$ClickLink,
+		onUrlChange: $author$project$Msg$ChangeUrl,
+		onUrlRequest: $author$project$Msg$ClickLink,
 		subscriptions: function (_v0) {
 			return $elm$core$Platform$Sub$none;
 		},

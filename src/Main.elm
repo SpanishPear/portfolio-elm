@@ -5,21 +5,20 @@ import Browser.Navigation as Nav exposing (Key)
 import Element exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Page.Util exposing (determinePage)
+import Page.Controller exposing (determinePage)
 import Post.Title
 import Route exposing (Route(..), routeParser)
 import Url exposing (Url)
+import Task exposing (Task)
 import Url.Parser as Parser
-
+import SmoothScroll exposing (scrollTo)
+import Msg exposing (Msg(..))
+import Page.Util exposing (resetViewport, jumpToBottomOfId)
 
 type alias Flags =
     {}
 
 
-type Msg
-    = ChangeUrl Url
-    | ClickLink UrlRequest
-    | NoOp
 
 
 type alias Model =
@@ -57,6 +56,16 @@ update msg model =
                 External url ->
                     ( model, Nav.load url )
 
+        ResetScroll ->
+            (model, resetViewport)
+        
+        ScrollTo id->
+            let 
+                _ = Debug.log  "Id" id
+            in 
+            (model, jumpToBottomOfId id)
+
+
 
 view : Model -> Document Msg
 view model =
@@ -88,10 +97,6 @@ view model =
     in
     { title = title
     , body =
-        let
-            _ =
-                Element.explain Debug.todo
-        in
         List.singleton <| determinePage model.route
     }
 
