@@ -6027,12 +6027,11 @@ var $author$project$Page$Util$jumpToBottomOfId = function (id) {
 		A2(
 			$elm$core$Task$andThen,
 			function (info) {
-				return A3($elm$browser$Browser$Dom$setViewportOf, id, 0, info.scene.height);
+				return A3($elm$browser$Browser$Dom$setViewportOf, id, 10, info.scene.height);
 			},
 			$elm$browser$Browser$Dom$getViewportOf(id)));
 };
 var $elm$browser$Browser$Navigation$load = _Browser_load;
-var $elm$core$Debug$log = _Debug_log;
 var $elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
 var $elm$browser$Browser$Dom$setViewport = _Browser_setViewport;
 var $author$project$Page$Util$resetViewport = A2(
@@ -6119,18 +6118,11 @@ var $author$project$Main$update = F2(
 				return _Utils_Tuple2(model, $author$project$Page$Util$resetViewport);
 			default:
 				var id = msg.a;
-				var _v2 = A2($elm$core$Debug$log, 'Id', id);
 				return _Utils_Tuple2(
 					model,
 					$author$project$Page$Util$jumpToBottomOfId(id));
 		}
 	});
-var $elm$html$Html$div = _VirtualDom_node('div');
-var $author$project$Msg$ResetScroll = {$: 'ResetScroll'};
-var $author$project$Msg$ScrollTo = function (a) {
-	return {$: 'ScrollTo', a: a};
-};
-var $elm$html$Html$a = _VirtualDom_node('a');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -6140,6 +6132,12 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			$elm$json$Json$Encode$string(string));
 	});
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
+var $elm$html$Html$div = _VirtualDom_node('div');
+var $author$project$Msg$ResetScroll = {$: 'ResetScroll'};
+var $author$project$Msg$ScrollTo = function (a) {
+	return {$: 'ScrollTo', a: a};
+};
+var $elm$html$Html$a = _VirtualDom_node('a');
 var $elm$html$Html$header = _VirtualDom_node('header');
 var $elm$html$Html$Attributes$href = function (url) {
 	return A2(
@@ -6214,10 +6212,11 @@ var $author$project$Components$NavBar$navbar = A2(
 							$elm$html$Html$a,
 							_List_fromArray(
 								[
+									$elm$html$Html$Attributes$id('about-button'),
 									$elm$html$Html$Attributes$class('nav-right-item'),
-									$elm$html$Html$Attributes$href(''),
+									$elm$html$Html$Attributes$href('/'),
 									$elm$html$Html$Events$onClick(
-									$author$project$Msg$ScrollTo('about'))
+									$author$project$Msg$ScrollTo('about-headshot'))
 								]),
 							_List_fromArray(
 								[
@@ -6266,6 +6265,8 @@ var $author$project$Components$NavBar$navbar = A2(
 							$elm$html$Html$img,
 							_List_fromArray(
 								[
+									$elm$html$Html$Events$onClick(
+									$author$project$Msg$ScrollTo('about-headshot')),
 									$elm$html$Html$Attributes$class('nav-right-item logo'),
 									$elm$html$Html$Attributes$src('./src/assets/images/logo.png')
 								]),
@@ -6273,13 +6274,6 @@ var $author$project$Components$NavBar$navbar = A2(
 						]))
 				]))
 		]));
-var $author$project$Components$TopPin$topPin = A2(
-	$elm$html$Html$div,
-	_List_fromArray(
-		[
-			$elm$html$Html$Attributes$id('top-pin')
-		]),
-	_List_Nil);
 var $author$project$Page$Home$About$aboutContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$p = _VirtualDom_node('p');
@@ -6304,7 +6298,7 @@ var $author$project$Page$Home$About$view = A2(
 					$elm$html$Html$img,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$class('about-headshot'),
+							$elm$html$Html$Attributes$id('about-headshot'),
 							$elm$html$Html$Attributes$src('./src/assets/images/headshot.png')
 						]),
 					_List_Nil),
@@ -6438,35 +6432,50 @@ var $author$project$Page$Controller$determinePage = function (route) {
 				var _v1 = route.a;
 				return A2(
 					$elm$html$Html$div,
-					_List_Nil,
 					_List_fromArray(
-						[$author$project$Components$TopPin$topPin, $author$project$Components$NavBar$navbar, $author$project$Page$Home$Home$view]));
+						[
+							$elm$html$Html$Attributes$class('main-viewport')
+						]),
+					_List_fromArray(
+						[$author$project$Components$NavBar$navbar, $author$project$Page$Home$Home$view]));
 			case 'Root':
 				var _v2 = route.a;
 				return A2(
 					$elm$html$Html$div,
-					_List_Nil,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('main-viewport')
+						]),
 					_List_fromArray(
 						[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
 			case 'About':
 				var _v3 = route.a;
 				return A2(
 					$elm$html$Html$div,
-					_List_Nil,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('main-viewport')
+						]),
 					_List_fromArray(
 						[$author$project$Components$NavBar$navbar, $author$project$Page$About$view]));
 			case 'Resume':
 				var _v4 = route.a;
 				return A2(
 					$elm$html$Html$div,
-					_List_Nil,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('main-viewport')
+						]),
 					_List_fromArray(
 						[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
 			case 'Post':
 				var postTitle = route.a.a;
 				return A2(
 					$elm$html$Html$div,
-					_List_Nil,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('main-viewport')
+						]),
 					_List_fromArray(
 						[
 							$author$project$Components$NavBar$navbar,
@@ -6476,14 +6485,20 @@ var $author$project$Page$Controller$determinePage = function (route) {
 				var _v5 = route.a;
 				return A2(
 					$elm$html$Html$div,
-					_List_Nil,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('main-viewport')
+						]),
 					_List_fromArray(
 						[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
 		}
 	} else {
 		return A2(
 			$elm$html$Html$div,
-			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('main-viewport')
+				]),
 			_List_fromArray(
 				[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
 	}

@@ -5,12 +5,13 @@ import Browser.Dom as Dom
 
 
 
+--  doesnt work fml
 -- Scroll to bottom of div with given ID
 -- https://package.elm-lang.org/packages/elm/browser/latest/Browser-Dom#setViewportOf
 jumpToBottomOfId : String -> Cmd Msg
 jumpToBottomOfId id =
     Dom.getViewportOf id
-        |> Task.andThen (\info -> Dom.setViewportOf id 0 info.scene.height)
+        |> Task.andThen (\info -> Dom.setViewportOf id 10 info.scene.height)
         |> Task.attempt (\_ -> NoOp)
 
 
@@ -19,5 +20,3 @@ jumpToBottomOfId id =
 resetViewport : Cmd Msg
 resetViewport =
     Task.perform (\_ -> NoOp) (Dom.setViewport 0 0)
-
-    

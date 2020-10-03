@@ -8,7 +8,7 @@ view : Html msg
 view =
     div [ id "about", class "about-container" ]
         [ div [ class "about-content-container" ]
-            [ img [ class "about-headshot", src "./src/assets/images/headshot.png" ] []
+            [ img [ id "about-headshot", src "./src/assets/images/headshot.png" ] []
             , div [ class "about-content-text-container" ]
                 [ div [ class "about-heading-container" ]
                     [ h1 [ class "about-heading-text" ] [ Html.text "About" ]

@@ -13,7 +13,7 @@ import Task exposing (Task)
 import Url.Parser as Parser
 import SmoothScroll exposing (scrollTo)
 import Msg exposing (Msg(..))
-import Page.Util exposing (resetViewport, jumpToBottomOfId)
+import Page.Util exposing (jumpToBottomOfId, resetViewport)
 
 type alias Flags =
     {}
@@ -60,9 +60,7 @@ update msg model =
             (model, resetViewport)
         
         ScrollTo id->
-            let 
-                _ = Debug.log  "Id" id
-            in 
+
             (model, jumpToBottomOfId id)
 
 
