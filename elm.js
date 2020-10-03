@@ -6133,7 +6133,6 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 	});
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$div = _VirtualDom_node('div');
-var $author$project$Msg$ResetScroll = {$: 'ResetScroll'};
 var $author$project$Msg$ScrollTo = function (a) {
 	return {$: 'ScrollTo', a: a};
 };
@@ -6200,9 +6199,9 @@ var $author$project$Components$NavBar$navbar = A2(
 							$elm$html$Html$a,
 							_List_fromArray(
 								[
+									$elm$html$Html$Attributes$id('home'),
 									$elm$html$Html$Attributes$class('nav-right-item'),
-									$elm$html$Html$Attributes$href('/'),
-									$elm$html$Html$Events$onClick($author$project$Msg$ResetScroll)
+									$elm$html$Html$Attributes$href('/')
 								]),
 							_List_fromArray(
 								[
@@ -6214,9 +6213,7 @@ var $author$project$Components$NavBar$navbar = A2(
 								[
 									$elm$html$Html$Attributes$id('about-button'),
 									$elm$html$Html$Attributes$class('nav-right-item'),
-									$elm$html$Html$Attributes$href('/'),
-									$elm$html$Html$Events$onClick(
-									$author$project$Msg$ScrollTo('about-headshot'))
+									$elm$html$Html$Attributes$href('/')
 								]),
 							_List_fromArray(
 								[

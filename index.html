@@ -37,8 +37,18 @@
 
     // Scroll lol
     document.getElementById('about-button').onclick = () => {
-      console.log("sadohjsakdlks")
-      document.getElementById("about").scrollIntoView()
+      document.getElementById("about").scrollIntoView({
+        behavior: 'smooth',
+        block: 'end'
+      })
+    };
+
+    // Scroll lol
+    document.getElementById('home').onclick = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     };
   </script>
 </body>
