@@ -4,6 +4,10 @@ From
 
 ![Basic bland terminal](assets/images/basic-terminal.png)
 
+to
+
+![Basic bland terminal](assets/images/pretty-terminal.png)
+
 ## Some basic colours :)
 
 So, you want some colours eh?
