@@ -18,10 +18,10 @@ Simply run the command
 1511 colours
 ```
 
-should setup your bash terminal to now be colourful! Make sure to start a new terminal session with
+should setup your bash terminal to now be colourful! Make sure to refresh your terminal configuration with
 
 ```
-bash
+source ~/.bashrc
 ```
 
 in order to see it take effect.
