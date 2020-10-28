@@ -86,7 +86,7 @@ This will install and setup a default zsh theme, and put some sane presets in `~
 
 Now that we've got ohmyzsh, we want to install the powerlevel10k theme.
 
-Take a look at the instructions [here] (https://www.smh.com.au/national/nsw/sydney-schools-evacuated-after-threatening-emails-received-20201027-p568zv.html), or trust me again (???) and run
+Take a look at the instructions [here](https://gist.insou.dev/gitstatus), or trust me again (???) and run
 
 ```
 git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
