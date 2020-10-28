@@ -137,6 +137,8 @@ tar xf zsh-5-8.tar.xz
 cd zsh-5.8
 ./configure --prefix="$HOME/bin"
 make && make install
+cd ~
+rm -rf zsh-5-8.tar.xz zsh-5-8
 ```
 
 If succesful, you should see three folders once you navigate to `~/bin` which are (`bin`, `share`, and `lib`).
