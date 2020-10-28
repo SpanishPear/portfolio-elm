@@ -170,7 +170,10 @@ You have a pretty terminal, but you may start to notice a few issues
 
 #### fetching gitstatusd
 
-@insou22 has kindly provided a script to fix this issue, which you can run using
+Every time you login (/open) a cse terminal - you might see "fetching gitstatusd..." for a few seconds.
+While this probably wouldnt annoy the average person - it absolutely infuriates me (and a few others)/
+
+[@insou22](https://github.com/insou22) has kindly provided a script to fix this issue, which you can run using
 
 ```
 curl https://gitstatus.insou.dev/ | sh
