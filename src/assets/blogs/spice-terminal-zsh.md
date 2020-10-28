@@ -176,7 +176,7 @@ While this probably wouldnt annoy the average person - it absolutely infuriates 
 [@insou22](https://github.com/insou22) has kindly provided a script to fix this issue, which you can run using
 
 ```
-curl https://gitstatus.insou.dev/ | sh
+curl https://gist.insou.dev/gitstatus | sh
 ```
 
 followed by
@@ -193,10 +193,114 @@ This will download `gitstatusd` and ensure that every time we open zsh - the com
 
 #### zsh-syntax-highlighting
 
+Clone the syntax highlighter
+
+```
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+Activate it by adding it to the `plugins` array inside `~/.zshrc`, and then sourcing `zshrc`
+
+ie making sure that the plugins line is:
+
+```
+plugins=(git zsh-syntax-highlighting)
+```
+
+and then running
+
+```
+source ~/.zshrc
+```
+
 #### zsh-autosuggestions
+
+Suggesting commands as you type based on history and completions!!
+As you type commands, you will see a completion offered after the cursor in a muted gray color.
+If you press the<kvd> → </kbd> key (forward-char widget) or <kbd>End</kbd> (end-of-line widget) with the cursor at the end of the buffer, it will accept the suggestion, replacing the contents of the command line buffer with the suggestion.
+
+Clone the plugin
+
+```
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+Activate it by adding it to the `plugins` array inside `~/.zshrc`, and then sourcing `zshrc`
+
+ie making sure that the plugins line is:
+
+```
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+
+```
+
+and then running
+
+```
+source ~/.zshrc
+```
 
 #### zsh-z
 
-### Extras
+ZSH-z is a command line tool that allows you to jump quickly to directories that you have visited frequently in the past, or recently -- but most often a combination of the two (a concept known as "frecency"). It works by keeping track of when you go to directories and how much time you spend in them.
 
-#### exa
+Same as the other plugins, we clone
+
+```
+git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
+```
+
+add
+
+```
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-z)
+```
+
+and source
+
+```
+source ~/.zshrc
+```
+
+### exa
+
+Exa is a "modern replacement for _ls_
+![exa](assets/images/exa.png)
+
+simply run
+
+```
+cargo install exa
+mv ~/.cargo/bin/exa ~/bin
+```
+
+you can remove cargo if you are running out of space, since we have kept exa in our own bin.
+
+I like to use the alias
+
+```
+alias ll="exa -l"
+```
+
+in my `~/zshrc'
+
+# Conclusion
+
+You now have a pretty terminal, and theres so much more you can do!
+
+Checkout the following extra resources
+
+# Extras + Notes
+
+### Further Customisation:
+
+https://github.com/romkatv/powerlevel10k/blob/master/README.md#configuration
+https://github.com/romkatv/powerlevel10k/blob/master/README.md#how-do-i-change-prompt-colors
+
+### Fonts are showing weird symbols
+
+Install the correct font into your terminal - I'm still yet to get this working on VLAB.
+
+Works on CSE through ssh, since obviously the font being used is on your local machine.
+
+Take a look at https://github.com/romkatv/powerlevel10k#fonts
