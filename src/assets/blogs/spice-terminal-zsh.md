@@ -168,27 +168,16 @@ You have a pretty terminal, but you may start to notice a few issues
 
 #### fetching gitstatusd
 
-Add the following to your `~/.bashrc` -- its crucial though that this code segment goes BEFORE
+@insou22 has kindly provided a script to fix this issue, which you can run using
 
 ```
-exec "$SHELL" -l
+curl https://gitstatus.insou.dev/ | sh
 ```
 
-Add the following:
+followed by
 
 ```
-if [ ! -e "$XDG_CACHE_HOME/gitstatus" ]; then
-	if [ ! -d "$HOME/.cache-persist" ]; then
-		echo "hi"
-		mkdir $HOME/.cache-persist
-		wget -P $HOME/.cache-persist https://github.com/romkatv/gitstatus/releases/download/v1.3.1/gitstatusd-linux-x86_64.tar.gz
-		tar -zxf $HOME/.cache-persist/gitstatusd-linux-x86_64.tar.gz --directory $HOME/.cache-persist
-		mkdir $HOME/.cache-persist/gitstatus
-		cp $HOME/.cache-persist/gitstatusd-linux-x86_64 $HOME/.cache-persist/gitstatus/gitstatusd-linux-x86_64
-	fi
-
-	cp -r $HOME/.cache-persist/* $XDG_CACHE_HOME
-fi
+source ~/.bashrc
 ```
 
 This will download `gitstatusd` and ensure that every time we open zsh - the computer knows where to find it, wheras whats happenning currently is that the cache is wiped every time you log off which is #notgood
