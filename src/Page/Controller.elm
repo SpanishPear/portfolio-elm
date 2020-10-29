@@ -1,5 +1,6 @@
 module Page.Controller exposing (determinePage)
 
+import Types exposing (Msg(..))
 import Components.NavBar exposing (navbar)
 import Html exposing (Html, div)
 import Html.Attributes exposing (class)
@@ -13,7 +14,6 @@ import Page.Blog
 import Page.Construction
 import Route exposing (Route(..))
 import Url.Builder exposing (Root)
-import Msg exposing (Msg(..))
 import Task exposing (Task)
 import Browser.Dom as Dom
 

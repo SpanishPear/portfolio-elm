@@ -1,5 +1,5 @@
 module Components.NavBar exposing (navbar)
-import Msg exposing (Msg(..))
+import Types exposing (Msg(..))
 
 import Html exposing (Html, a, div, header, p, img, text)
 import Html.Attributes exposing (class, href, id, src, target)

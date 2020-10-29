@@ -12,7 +12,7 @@ import Url exposing (Url)
 import Task exposing (Task)
 import Url.Parser as Parser
 import SmoothScroll exposing (scrollTo)
-import Msg exposing (Msg(..))
+import Types exposing (Msg(..))
 import Page.Util exposing (jumpToBottomOfId, resetViewport)
 
 type alias Flags =

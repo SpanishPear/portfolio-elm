@@ -1,5 +1,5 @@
 module Page.Util exposing (jumpToBottomOfId, resetViewport)
-import Msg exposing (Msg(..))
+import Types exposing (Msg(..))
 import Task exposing (Task)
 import Browser.Dom as Dom
 

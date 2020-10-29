@@ -1,10 +1,12 @@
 module Page.Blog exposing (view)
 
 import Html exposing (Html, h2, div)
-import Html.Attributes exposing (class)
+import Html.Attributes exposing (class, id)
 
 view : Html msg
 view =
     div [class "viewport-container"] [
-        h2 [] [Html.text "test"]
+        div [id "blog-feed-container"] [
+            
+        ]
     ]

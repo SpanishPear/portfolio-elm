@@ -4372,10 +4372,10 @@ function _Url_percentDecode(string)
 	{
 		return $elm$core$Maybe$Nothing;
 	}
-}var $author$project$Msg$ChangeUrl = function (a) {
+}var $author$project$Types$ChangeUrl = function (a) {
 	return {$: 'ChangeUrl', a: a};
 };
-var $author$project$Msg$ClickLink = function (a) {
+var $author$project$Types$ClickLink = function (a) {
 	return {$: 'ClickLink', a: a};
 };
 var $elm$core$Basics$EQ = {$: 'EQ'};
@@ -6001,7 +6001,7 @@ var $author$project$Main$init = F3(
 	});
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $author$project$Msg$NoOp = {$: 'NoOp'};
+var $author$project$Types$NoOp = {$: 'NoOp'};
 var $elm$core$Basics$composeL = F3(
 	function (g, f, x) {
 		return g(
@@ -6032,7 +6032,7 @@ var $author$project$Page$Util$jumpToBottomOfId = function (id) {
 	return A2(
 		$elm$core$Task$attempt,
 		function (_v0) {
-			return $author$project$Msg$NoOp;
+			return $author$project$Types$NoOp;
 		},
 		A2(
 			$elm$core$Task$andThen,
@@ -6047,7 +6047,7 @@ var $elm$browser$Browser$Dom$setViewport = _Browser_setViewport;
 var $author$project$Page$Util$resetViewport = A2(
 	$elm$core$Task$perform,
 	function (_v0) {
-		return $author$project$Msg$NoOp;
+		return $author$project$Types$NoOp;
 	},
 	A2($elm$browser$Browser$Dom$setViewport, 0, 0));
 var $elm$url$Url$addPort = F2(
@@ -6143,7 +6143,7 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 	});
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$div = _VirtualDom_node('div');
-var $author$project$Msg$ScrollTo = function (a) {
+var $author$project$Types$ScrollTo = function (a) {
 	return {$: 'ScrollTo', a: a};
 };
 var $elm$html$Html$a = _VirtualDom_node('a');
@@ -6273,7 +6273,7 @@ var $author$project$Components$NavBar$navbar = A2(
 							_List_fromArray(
 								[
 									$elm$html$Html$Events$onClick(
-									$author$project$Msg$ScrollTo('about-headshot')),
+									$author$project$Types$ScrollTo('about-headshot')),
 									$elm$html$Html$Attributes$class('nav-right-item logo'),
 									$elm$html$Html$Attributes$src('./src/assets/images/logo.png')
 								]),
@@ -6357,7 +6357,6 @@ var $author$project$Page$Home$About$view = A2(
 				]))
 		]));
 var $author$project$Page$About$view = $author$project$Page$Home$About$view;
-var $elm$html$Html$h2 = _VirtualDom_node('h2');
 var $author$project$Page$Blog$view = A2(
 	$elm$html$Html$div,
 	_List_fromArray(
@@ -6367,12 +6366,12 @@ var $author$project$Page$Blog$view = A2(
 	_List_fromArray(
 		[
 			A2(
-			$elm$html$Html$h2,
-			_List_Nil,
+			$elm$html$Html$div,
 			_List_fromArray(
 				[
-					$elm$html$Html$text('test')
-				]))
+					$elm$html$Html$Attributes$id('blog-feed-container')
+				]),
+			_List_Nil)
 		]));
 var $author$project$Page$Construction$view = A2(
 	$elm$html$Html$div,
@@ -6434,6 +6433,7 @@ var $author$project$Page$Home$Home$view = A2(
 	_List_Nil,
 	_List_fromArray(
 		[$author$project$Page$Home$Landing$view, $author$project$Page$Home$About$view]));
+var $elm$html$Html$h2 = _VirtualDom_node('h2');
 var $author$project$Page$NotFound$view = A2(
 	$elm$html$Html$h2,
 	_List_Nil,
@@ -6594,8 +6594,8 @@ var $author$project$Main$view = function (model) {
 var $author$project$Main$main = $elm$browser$Browser$application(
 	{
 		init: $author$project$Main$init,
-		onUrlChange: $author$project$Msg$ChangeUrl,
-		onUrlRequest: $author$project$Msg$ClickLink,
+		onUrlChange: $author$project$Types$ChangeUrl,
+		onUrlRequest: $author$project$Types$ClickLink,
 		subscriptions: function (_v0) {
 			return $elm$core$Platform$Sub$none;
 		},
