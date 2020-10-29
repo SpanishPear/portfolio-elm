@@ -5,4 +5,4 @@ import Html exposing (Html, h2)
 
 view : Html msg
 view =
-    h2 [] [ Html.text "HOME" ]
+    h2 [] [ Html.text "404 - SANITY NOT FOUND" ]

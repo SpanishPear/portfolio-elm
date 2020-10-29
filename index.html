@@ -1,56 +1,60 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Main</title>
+    <link rel="stylesheet" href="src/assets/styles/index.css" />
+    <script src="elm.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Main</title>
-  <link rel="stylesheet" href="src/assets/styles/index.css">
-  <script src="elm.js"></script>
-</head>
+  <body>
+    <script>
+      var app = Elm.Main.init();
+      // When the user scrolls the page, execute myFunction
+      window.onscroll = function () {
+        myFunction();
+      };
 
-<body>
-  <script>
-    var app = Elm.Main.init();
-    // When the user scrolls the page, execute myFunction
-    window.onscroll = function () {
-      myFunction()
-    };
+      // Get the header
+      var header = document.getElementById("header");
 
-    // Get the header
-    var header = document.getElementById("header");
+      // Get the offset position of the navbar
+      var landing = document.getElementById("landing-container");
+      if (landing !== null) {
+        var sticky = (85 / 100) * landing.getBoundingClientRect().height;
+        console.log(sticky);
 
-    // Get the offset position of the navbar
-    var sticky = 85 / 100 * document.getElementById("landing-container").getBoundingClientRect().height;
-    console.log(sticky);
-
-    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-    function myFunction() {
-      if (window.scrollY > sticky) {
-        header.classList.add("sticky");
-        document.getElementById("landing-container").classList.add("landing-no-header")
-      } else {
-        header.classList.remove("sticky");
-        document.getElementById("landing-container").classList.remove("landing-no-header")
-
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+          if (window.scrollY > sticky) {
+            header.classList.add("sticky");
+            document
+              .getElementById("landing-container")
+              .classList.add("landing-no-header");
+          } else {
+            header.classList.remove("sticky");
+            document
+              .getElementById("landing-container")
+              .classList.remove("landing-no-header");
+          }
+        }
       }
-    }
 
-    // Scroll lol
-    document.getElementById('about-button').onclick = () => {
-      document.getElementById("about").scrollIntoView({
-        behavior: 'smooth',
-        block: 'end'
-      })
-    };
+      // Scroll lol
+      document.getElementById("about-button").onclick = () => {
+        document.getElementById("about").scrollIntoView({
+          behavior: "smooth",
+          block: "end",
+        });
+      };
 
-    // Scroll lol
-    document.getElementById('home').onclick = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    };
-  </script>
-</body>
-
+      // Scroll lol
+      document.getElementById("home").onclick = () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      };
+    </script>
+  </body>
 </html>

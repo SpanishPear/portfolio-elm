@@ -81,6 +81,10 @@ view model =
                         About ->
                             "About"
 
+                        Blog -> 
+                            "Blog"
+                        Projects -> 
+                            "Projects"
                         Resume ->
                             "Resume"
 

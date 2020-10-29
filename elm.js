@@ -5804,10 +5804,12 @@ var $elm$url$Url$Parser$parse = F2(
 					$elm$core$Basics$identity)));
 	});
 var $author$project$Route$About = {$: 'About'};
+var $author$project$Route$Blog = {$: 'Blog'};
 var $author$project$Route$Home = {$: 'Home'};
 var $author$project$Route$Post = function (a) {
 	return {$: 'Post', a: a};
 };
+var $author$project$Route$Projects = {$: 'Projects'};
 var $author$project$Route$Resume = {$: 'Resume'};
 var $author$project$Route$Root = {$: 'Root'};
 var $elm$url$Url$Parser$Parser = function (a) {
@@ -5971,6 +5973,14 @@ var $author$project$Route$routeParser = $elm$url$Url$Parser$oneOf(
 			$elm$url$Url$Parser$map,
 			$author$project$Route$About,
 			$elm$url$Url$Parser$s('about')),
+			A2(
+			$elm$url$Url$Parser$map,
+			$author$project$Route$Blog,
+			$elm$url$Url$Parser$s('blog')),
+			A2(
+			$elm$url$Url$Parser$map,
+			$author$project$Route$Projects,
+			$elm$url$Url$Parser$s('projects')),
 			A2(
 			$elm$url$Url$Parser$map,
 			$author$project$Route$Resume,
@@ -6347,6 +6357,23 @@ var $author$project$Page$Home$About$view = A2(
 				]))
 		]));
 var $author$project$Page$About$view = $author$project$Page$Home$About$view;
+var $elm$html$Html$h2 = _VirtualDom_node('h2');
+var $author$project$Page$Blog$view = A2(
+	$elm$html$Html$div,
+	_List_fromArray(
+		[
+			$elm$html$Html$Attributes$class('viewport-container')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$elm$html$Html$h2,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text('test')
+				]))
+		]));
 var $author$project$Page$Construction$view = A2(
 	$elm$html$Html$div,
 	_List_fromArray(
@@ -6407,7 +6434,13 @@ var $author$project$Page$Home$Home$view = A2(
 	_List_Nil,
 	_List_fromArray(
 		[$author$project$Page$Home$Landing$view, $author$project$Page$Home$About$view]));
-var $elm$html$Html$h2 = _VirtualDom_node('h2');
+var $author$project$Page$NotFound$view = A2(
+	$elm$html$Html$h2,
+	_List_Nil,
+	_List_fromArray(
+		[
+			$elm$html$Html$text('404 - SANITY NOT FOUND')
+		]));
 var $author$project$Post$Title$toString = function (_v0) {
 	var str = _v0.a;
 	return str;
@@ -6478,7 +6511,7 @@ var $author$project$Page$Controller$determinePage = function (route) {
 							$author$project$Components$NavBar$navbar,
 							$author$project$Page$Post$view(postTitle)
 						]));
-			default:
+			case 'Blog':
 				var _v5 = route.a;
 				return A2(
 					$elm$html$Html$div,
@@ -6487,7 +6520,27 @@ var $author$project$Page$Controller$determinePage = function (route) {
 							$elm$html$Html$Attributes$class('main-viewport')
 						]),
 					_List_fromArray(
+						[$author$project$Components$NavBar$navbar, $author$project$Page$Blog$view]));
+			case 'Projects':
+				var _v6 = route.a;
+				return A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('main-viewport')
+						]),
+					_List_fromArray(
 						[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
+			default:
+				var _v7 = route.a;
+				return A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('main-viewport')
+						]),
+					_List_fromArray(
+						[$author$project$Components$NavBar$navbar, $author$project$Page$NotFound$view]));
 		}
 	} else {
 		return A2(
@@ -6497,7 +6550,7 @@ var $author$project$Page$Controller$determinePage = function (route) {
 					$elm$html$Html$Attributes$class('main-viewport')
 				]),
 			_List_fromArray(
-				[$author$project$Components$NavBar$navbar, $author$project$Page$Construction$view]));
+				[$author$project$Components$NavBar$navbar, $author$project$Page$NotFound$view]));
 	}
 };
 var $elm$core$List$singleton = function (value) {
@@ -6516,6 +6569,10 @@ var $author$project$Main$view = function (model) {
 					return 'Secret Page!';
 				case 'About':
 					return 'About';
+				case 'Blog':
+					return 'Blog';
+				case 'Projects':
+					return 'Projects';
 				case 'Resume':
 					return 'Resume';
 				case 'Post':

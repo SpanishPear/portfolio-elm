@@ -9,6 +9,8 @@ type Route
     | Root
     | About
     | Resume
+    | Blog
+    | Projects
     | Post Title
     | NotFound
 
@@ -19,6 +21,8 @@ routeParser =
         [ Parser.map Home Parser.top
         , Parser.map Root (s "root")
         , Parser.map About (s "about")
+        , Parser.map Blog (s "blog")
+        , Parser.map Projects (s "projects")
         , Parser.map Resume (s "resume")
         , Parser.map Post (s "post" </> Title.urlParser)
         ]
